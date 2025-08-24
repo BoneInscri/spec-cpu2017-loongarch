@@ -52,9 +52,25 @@ runcpu --config=loongarch64 --action=build all
 
 5. **修改原文件，消除部分子测试的error&warn**
 
+```
+./benchspec/CPU/525.x264_r/src/ldecod_src/configfile.c
+增加InputParameters cfgparams;
+```
+
+```
+./benchspec/CPU/525.x264_r/src/ldecod_src/configfile.h
+InputParameters cfgparams; 修改为
+extern InputParameters cfgparams;
+```
 
 
 
+6. **测试指令**
 
+```
+# 运行单个测试（例如 500.perlbench_r）
+runcpu --config=loongarch64.cfg --action=run 500.perlbench_r
 
-
+# 运行全部测试
+runcpu --config=loongarch64.cfg --action=run all
+```
